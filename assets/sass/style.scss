@@ -1,0 +1,436 @@
+@use "./helpers" as *;
+@use "./globals" as *;
+
+header {
+  width: 100%;
+  padding: 40px 50px;
+
+  background: $mainColor;
+
+  position: relative;
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    transform: translate(-50%, -50%);
+
+    @include To(992px) {
+      width: 180px;
+      left: 40px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+
+  .burger-icon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    @include To(992px) {
+      display: block;
+    }
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include To(992px) {
+      justify-content: flex-end;
+    }
+
+    .links {
+      @extend %flexCenter;
+      gap: 30px;
+      font-size: 1.3rem;
+
+      @include To(992px) {
+        display: none;
+      }
+    }
+
+    .actions {
+      @extend %flexCenter;
+      gap: 30px;
+      font-size: 1.2rem;
+      @include To(992px) {
+        display: none;
+      }
+
+      li {
+        cursor: pointer;
+      }
+
+      .signup {
+        background-color: $secondColor;
+        padding: 11px 25px;
+
+        color: white;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+main {
+  margin-bottom: 80px;
+  width: 100%;
+
+  padding-top: 7%;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: end;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    height: 90%;
+    background: linear-gradient($mainColor, darken($mainColor, 15%));
+  }
+
+  .couch {
+    max-width: 95%;
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+  }
+  .app {
+    max-width: 50%;
+
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+  }
+}
+
+#features {
+  width: 100%;
+
+  display: grid;
+  row-gap: 50px;
+
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 300px;
+    z-index: -1;
+    background: url("./assets/images/dots.svg");
+    background-size: fit;
+    background-repeat: no-repeat;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include To(992px) {
+      display: none;
+    }
+  }
+
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
+
+  .feature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+
+    .image {
+      width: 100px;
+      height: 100px;
+      padding: 15px;
+      border-radius: 50%;
+      border: 8px solid $mainColor;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .desc {
+      max-width: 300px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 400;
+    }
+  }
+}
+
+#partners {
+  width: 100%;
+  text-align: center;
+
+  .title {
+    color: $mainColor;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .desc {
+    font-size: 14px;
+    margin-inline: auto;
+    font-weight: 400;
+    max-width: 500px;
+    margin-bottom: 50px;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    margin-inline: auto;
+    justify-content: center;
+    max-width: 600px;
+    flex-wrap: wrap;
+    gap: 50px;
+
+    .partner {
+      width: 100px;
+      height: 100px;
+      border-radius: 7px;
+      @extend %flexCenter;
+      background: white;
+      padding: 20px;
+      box-shadow: -5px 5px 5px rgba($color: black, $alpha: 0.07);
+    }
+  }
+}
+
+#banner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 20%;
+    background-color: $secondColor;
+    @include To(1075px) {
+      display: none;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0%;
+    right: 0;
+    z-index: -1;
+    width: 400px;
+    height: 200px;
+    border: none;
+    border-radius: 50%;
+    border-top: 5px solid $mainColor;
+    @include To(1075px) {
+      display: none;
+    }
+  }
+
+  .content {
+    @include To(1075px) {
+      order: 1;
+      text-align: center;
+    }
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .desc {
+      max-width: 500px;
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .signup {
+      width: fit-content;
+      background: $mainColor;
+      color: black;
+      padding: 6px 20px;
+      border-radius: 7px;
+      cursor: pointer;
+      @include To(1075px) {
+        margin-inline: auto;
+      }
+    }
+  }
+
+  .image {
+    @include To(1075px) {
+      order: 1;
+    }
+  }
+}
+
+#contact {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 0;
+  overflow: hidden;
+  flex-wrap: wrap;
+
+  @include To(992px) {
+    align-items: center;
+  }
+
+  @include To(1075px) {
+    margin-top: 100px;
+  }
+
+  .images {
+    @extend %flexCenter;
+
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 320px;
+
+    position: relative;
+    flex-direction: column;
+
+    .lamp {
+      max-width: 200px;
+    }
+
+    .download {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .app {
+      position: absolute;
+
+      left: 50%;
+      transform: translateX(-50%);
+
+      bottom: -100%;
+
+      width: 170px;
+
+      @include To(992px) {
+        display: none;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 140%;
+        height: 80%;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 10px solid $mainColor;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  form {
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 40px;
+    display: flex;
+
+    flex-direction: column;
+    gap: 40px;
+
+    .title {
+      font-size: 2rem;
+    }
+
+    .name,
+    .email {
+      position: relative;
+      width: 100%;
+      min-width: 320px;
+      height: 40px;
+
+      &::before {
+        position: absolute;
+        top: -50%;
+        transform: translateY(-50%);
+        left: 15px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: black;
+        transition: 0.5s;
+      }
+    }
+
+    .name::before {
+      content: "Your Name";
+    }
+
+    .email::before {
+      content: "Your Email";
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border-radius: 5px;
+      padding: 15px;
+      border: 3px solid $mainColor;
+    }
+
+    textarea {
+      padding: 10px;
+      height: 120px;
+      outline: none;
+      border: 3px solid $mainColor;
+      border-radius: 5px;
+      resize: none;
+
+      &::placeholder {
+        color: black;
+        font-weight: bold;
+      }
+    }
+
+    .signup {
+      width: fit-content;
+      padding: 8px 20px;
+      background-color: black;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
