@@ -5,7 +5,7 @@
 #### Built With :
 
 - HTML
-- CSS
+- Sass
 
 ##### Authors
 
